@@ -1,0 +1,40 @@
+nginx:
+  image: "nginx:1.9"
+  container_name: nginx
+  ports:
+    - 443:443
+  links:
+    - registry:registry
+    - registry-web:registry-web
+  volumes:
+    - ./auth/:/etc/nginx/conf.d
+
+registry:
+  restart: always
+  image: registry:2
+  container_name: registry
+  ports:
+    - 5000:5000
+  volumes:
+    - ./config.yml:/etc/docker/registry/config.yml
+    - /docker-data:/var/lib/registry
+  links:
+    - redis:redis
+
+redis:
+  image: "redis:latest"
+  container_name: redis
+
+registry-web:
+  image: "hyper/docker-registry-web"
+  container_name: registry-web
+  ports: 
+    - 8080:8080
+  links:
+    - registry:registry
+  environment:
+    - REGISTRY_HOST=registry
+    - REGISTRY_PORT=5000
+    
+
+

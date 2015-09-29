@@ -1,0 +1,33 @@
+version: 0.1
+log:
+  level: debug
+  fields:
+    service: registry
+
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+  delete:
+    enabled: true
+  cache:
+    blobdescriptor: redis
+  maintenance:
+    uploadpurging:
+      enabled: true
+      age: 168h
+      interval: 24h
+      dryrun: false
+
+http:
+  addr: :5000
+  secret: dist01 
+
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
+
+redis:
+  addr: redis:6379
+

@@ -1,0 +1,8 @@
+{
+	"auths": {
+		"localhost": {
+			"auth": "YWRtaW46cGFzc3dvcmQ=",
+			"email": "deploy@docker"
+		}
+	}
+}
