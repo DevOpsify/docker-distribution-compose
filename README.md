@@ -7,7 +7,9 @@ make sure create `/docker-data` and mount additional disk storage on this direct
 docker-compose up -d
 
 ### Add insecure registry
-add `--insecure-registry localhost -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375` to `/usr/lib/systemd/system/docker.service`
+add `--insecure-registry localhost -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375` to `/usr/lib/systemd/system/docker.service` 
+
+or Ubuntu `/lib/systemd/system/docker.service`
 
 ### Docker login
 `admin/password`
